@@ -1,0 +1,113 @@
+:root {
+  --containerWidth: calc(1024 - 40);
+}
+
+.block {
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #4993DD;
+  font-family: Tahoma, sans-serif;
+  max-width: 1024px;
+  min-width: 200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+
+  & * {
+    box-sizing: border-box;
+  }
+}
+
+.heading {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.row {
+  margin: 0 -10px;
+}
+
+.col {
+  display: inline-block;
+  vertical-align: top;
+  padding: 0 10px;
+
+  &_description {
+    font-size: 10px;
+  }
+
+  @media (--desktop) {
+    &_description {
+      width: calc(284*100/984)%;
+    }
+
+    &_departDate {
+      width: calc(220*100/984)%;
+    }
+
+    &_returnDate {
+      width: calc(220*100/984)%;
+    }
+
+    &_submit {
+      width: calc(260*100/984)%;
+    }
+  }
+
+  @media (--laptop) {
+    &_description {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+    &_departDate, &_returnDate, &_submit {
+      width: calc(100/3)%;
+    }
+  }
+
+  @media (--tablet) {
+    &_description {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+    &_departDate, &_returnDate {
+      width: 50%;
+      margin-bottom: 10px;
+    }
+    &_submit {
+      width: 100%;
+    }
+  }
+
+  @media (--phone) {
+    &_description {
+      margin-bottom: 15px;
+    }
+    &_departDate, &_returnDate, &_description, &_submit {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.input, .button {
+  height: 40px;
+  width: 100%;
+}
+
+.description {
+  padding-right: 40px;
+}
+
+
+.button {
+  text-transform: uppercase;
+  background: #F4A43E;
+  color: white;
+  font-size: 20px;
+  letter-spacing: 2px;
+  border: 0;
+  border-bottom: 2px solid #DB9337;
+
+  &:active {
+    background: #DB9337;
+  }
+}
