@@ -1,3 +1,5 @@
+@import 'FormWidget/shared/constants.css';
+
 :root {
   --containerWidth: calc(1024 - 40);
 }
@@ -5,7 +7,7 @@
 .block {
   padding: 10px 20px;
   color: #fff;
-  background-color: #4993DD;
+  background-color: var(--c-main);
   font-family: Tahoma, sans-serif;
   max-width: 1024px;
   min-width: 200px;
@@ -105,9 +107,11 @@
   font-size: 20px;
   letter-spacing: 2px;
   border: 0;
+  // todo
   border-bottom: 2px solid #DB9337;
 
   &:active {
     background: #DB9337;
+    color: color(#F4A43E blackness(14%));
   }
 }

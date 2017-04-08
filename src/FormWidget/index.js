@@ -1,31 +1,49 @@
-import { Component, h } from 'preact';
+import { Component, h} from 'preact';
 import classNames from 'classNames';
 
-require('cq-prolyfill')();
+import { DatePicker } from './components/DatePicker';
 
-import s from './styles.css';
+//require('cq-prolyfill')(); // fixme не работает с css модулями
 
-export class FormWidget extends Component {
+import s from './index.css';
+
+const defaultColors = {
+	background: '#4990E2',
+	button: '#F4A43E',
+	text: '#FFF',
+};
+
+class FormWidget extends Component {
 
 	render(props) {
+		const { colors } = this.context;
+
 		return (
-			<form className={s['block']} onSubmit={this.handleFormSubmit}>
-				<div className={s['heading']}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</div>
+			<form
+				className={s['block']}
+				style={{ background: colors.background}}
+				onSubmit={this.handleFormSubmit}
+			>
+				<div className={s['heading']} style={{ color: colors.text}}>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+				</div>
 				<div className={s['row']}>
 					<div className={classNames(s['col'], s['col_description'])}>
-						<div className={s['description']}>
+						<div className={s['description']} style={{ color: colors.text}}>
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
 							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
 						</div>
 					</div>
 					<div className={classNames(s['col'], s['col_departDate'])}>
-						<input className={s['input']} type="date" placeholder="Depart date"/>
+						<DatePicker inputClassName={s['input']} placeholder="Depart date"/>
 					</div>
 					<div className={classNames(s['col'], s['col_returnDate'])}>
-						<input className={s['input']} type="date" placeholder="Return date"/>
+						<DatePicker inputClassName={s['input']} placeholder="Return date"/>
 					</div>
 					<div className={classNames(s['col'], s['col_submit'])}>
-						<button className={s['button']}>search</button>
+						<button className={s['button']} style={{ background: colors.button}}>
+							search
+						</button>
 					</div>
 				</div>
 			</form>
@@ -34,5 +52,21 @@ export class FormWidget extends Component {
 
 	handleFormSubmit = (e) => {
 		e.preventDefault();
+	}
+}
+
+export default class FormWidgetWithContext extends Component {
+
+	getChildContext () {
+		return {
+			colors: {
+				...defaultColors,
+				...this.props.customColors,
+			}
+		};
+	}
+
+	render (props) {
+		return <FormWidget {...props} />
 	}
 }

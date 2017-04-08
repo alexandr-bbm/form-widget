@@ -1,18 +1,23 @@
 <!doctype html>
 <html>
-  <head>
+<head>
     <title>Тестовая страница, на которую будет подключаться виджет</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  </head>
-  <body>
-    <h1>Страница, на которую будет подключаться виджет</h1>
-    <div id='partnerFormContainer'></div>
-    <script src="/dist/bundle.js"></script>
-    <script>
-      CompanyName.FormWidget.create({
-          selector: '#partnerFormContainer'
-      });
-    </script>
-  </body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+<h1>Страница, на которую будет подключаться виджет</h1>
+<div id='partnerFormContainer'></div>
+<script src="./dist/bundle.js"></script>
+<script>
+	CompanyName.FormWidget.create({
+      selector: '#partnerFormContainer',
+//      customColors: {
+//        background: '#F4A43E',
+//        button: '#4990E2',
+//        text: '#000',
+//      }
+	});
+</script>
+</body>
 </html>

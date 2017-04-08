@@ -1,11 +1,11 @@
 import { render, h } from 'preact';
 
-import { FormWidget } from 'FormWidget';
+import FormWidget from 'FormWidget';
 
 module.exports = {
 	FormWidget: {
 		create (config) {
-			render(<FormWidget {...config} />, document.querySelector(config.selector));
+			render(<FormWidget customColors={config.customColors} />, document.querySelector(config.selector));
 		}
 	}
 };

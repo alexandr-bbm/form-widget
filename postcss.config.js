@@ -1,6 +1,8 @@
 module.exports = {
 	plugins: {
-		'postcss-import': {},
+		'postcss-import': {
+			path: ['src/']
+		},
 		'postcss-cssnext': {
 			browsers: ['last 4 versions', '> 5%'],
 			features: {
