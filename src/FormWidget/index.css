@@ -1,18 +1,28 @@
 @import 'FormWidget/shared/constants.css';
 
 :root {
-  --containerWidth: calc(1024 - 40);
+  --sidePadding: 20;
+  --widthDesktop: calc(1024 - var(--sidePadding)*2);
+  --widthLaptop: calc(768 - var(--sidePadding)*2);
+
+  --tablet: 768px;
 }
 
 .block {
-  padding: 10px 20px;
+  display: block;
+  padding: 10px 20px 15px;
   color: #fff;
   background-color: var(--c-main);
-  font-family: Tahoma, sans-serif;
+  font-family: Arial, sans-serif;
+  line-height: 1.3;
   max-width: 1024px;
   min-width: 200px;
   margin: 0 auto;
   box-sizing: border-box;
+
+  //&:global(:container(width < 768px)) {
+  //  display: none; /* something simple for testing */
+  //}
 
   & * {
     box-sizing: border-box;
@@ -20,12 +30,24 @@
 }
 
 .heading {
-  font-size: 20px;
+  font-size: 23px;
+  letter-spacing: 1px;
   margin-bottom: 10px;
+
+  @media (--tablet) {
+    font-size: 15px;
+  }
+  @media (--phone) {
+    font-size: 15px;
+  }
 }
 
 .row {
   margin: 0 -10px;
+
+  @media (--phone) {
+    display: table;
+  }
 }
 
 .col {
@@ -39,19 +61,19 @@
 
   @media (--desktop) {
     &_description {
-      width: calc(284*100/984)%;
+      width: calc(284*100/var(--widthDesktop))%;
+
+      & .description {
+        padding-right: 40px;
+      }
     }
 
-    &_departDate {
-      width: calc(220*100/984)%;
-    }
-
-    &_returnDate {
-      width: calc(220*100/984)%;
+    &_departDate, &_returnDate {
+      width: calc(220*100/var(--widthDesktop))%;
     }
 
     &_submit {
-      width: calc(260*100/984)%;
+      width: calc(260*100/var(--widthDesktop))%;
     }
   }
 
@@ -60,8 +82,17 @@
       width: 100%;
       margin-bottom: 15px;
     }
-    &_departDate, &_returnDate, &_submit {
-      width: calc(100/3)%;
+
+    &_submit {
+      padding-left: 15px;
+    }
+
+    &_departDate, &_returnDate {
+      width: calc(230*100/var(--widthLaptop))%;
+    }
+
+    &_submit {
+      width: calc(268*100/var(--widthLaptop))%;
     }
   }
 
@@ -72,7 +103,7 @@
     }
     &_departDate, &_returnDate {
       width: 50%;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
     &_submit {
       width: 100%;
@@ -82,31 +113,31 @@
   @media (--phone) {
     &_description {
       margin-bottom: 15px;
+      display: table-footer-group;
+      & .description {
+        padding: 0 10px;
+      }
     }
     &_departDate, &_returnDate, &_description, &_submit {
       width: 100%;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
   }
 }
 
-.input, .button {
+.button {
   height: 40px;
   width: 100%;
-}
-
-.description {
-  padding-right: 40px;
-}
-
-
-.button {
+  border-radius: 2px;
   text-transform: uppercase;
+  outline: none;
   background: #F4A43E;
   color: white;
   font-size: 20px;
   letter-spacing: 2px;
-  border: 0;
+  border-top: none;
+  border-left: none;
+  border-right: none;
   // todo
   border-bottom: 2px solid #DB9337;
 

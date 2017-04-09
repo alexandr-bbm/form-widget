@@ -4,13 +4,29 @@
   position: relative;
 }
 
+
+.input {
+  height: 40px;
+  width: 100%;
+  border-radius: 2px;
+  border: none;
+  padding: 12px 30px 12px 12px;
+  outline: none;
+}
+
 .icon {
   position: absolute;
   top: 12px;
-  right: 12px;
+  right: 10px;
   display: inline-block;
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 17px;
   content: '';
   color: var(--c-main);
+}
+
+::placeholder {
+  color: #9B9B9B;
+  padding: 12px 30px 12px 12px;
+  font-size: 12px;
 }

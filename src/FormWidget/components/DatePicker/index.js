@@ -13,7 +13,7 @@ export class DatePicker extends Component {
 			<div className={classNames(s['container'], props.containerClassName)}>
 				<input
 					className={classNames(s['input'], props.inputClassName)}
-					type="date"
+					type="text"
 					placeholder={props.placeholder} />
 				<Icon
 					name="calendar"

@@ -1,9 +1,10 @@
-import { Component, h} from 'preact';
+import { Component, h } from 'preact';
 import classNames from 'classNames';
 
 import { DatePicker } from './components/DatePicker';
 
 //require('cq-prolyfill')(); // fixme не работает с css модулями
+require('cq-prolyfill')({ postcss: true });
 
 import s from './index.css';
 
@@ -17,31 +18,30 @@ class FormWidget extends Component {
 
 	render(props) {
 		const { colors } = this.context;
-
 		return (
 			<form
 				className={s['block']}
 				style={{ background: colors.background}}
 				onSubmit={this.handleFormSubmit}
 			>
-				<div className={s['heading']} style={{ color: colors.text}}>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+				<div className={s['heading']} style={{ color: colors.text }}>
+					Where does it come from? Why&nbsp;do&nbsp;we&nbsp;use&nbsp;it?
 				</div>
 				<div className={s['row']}>
 					<div className={classNames(s['col'], s['col_description'])}>
 						<div className={s['description']} style={{ color: colors.text}}>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+							It is a long established fact that a reader will be distracted by
+							the readable content of a page when looking at its layout
 						</div>
 					</div>
 					<div className={classNames(s['col'], s['col_departDate'])}>
-						<DatePicker inputClassName={s['input']} placeholder="Depart date"/>
+						<DatePicker placeholder="Depart date"/>
 					</div>
 					<div className={classNames(s['col'], s['col_returnDate'])}>
-						<DatePicker inputClassName={s['input']} placeholder="Return date"/>
+						<DatePicker placeholder="Return date"/>
 					</div>
 					<div className={classNames(s['col'], s['col_submit'])}>
-						<button className={s['button']} style={{ background: colors.button}}>
+						<button className={s['button']} style={{ background: colors.button, color: colors.text }}>
 							search
 						</button>
 					</div>
@@ -58,11 +58,15 @@ class FormWidget extends Component {
 export default class FormWidgetWithContext extends Component {
 
 	getChildContext () {
+		if (!this.props.config.affiliateId) {
+			throw new Error('')
+		}
 		return {
 			colors: {
 				...defaultColors,
-				...this.props.customColors,
-			}
+				...this.props.config && this.props.config.customColors,
+			},
+			affiliateId: this.props.config.affiliateId
 		};
 	}
 
