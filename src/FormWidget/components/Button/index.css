@@ -1,0 +1,20 @@
+.button {
+  height: 40px;
+  width: 100%;
+  border-radius: 2px;
+  text-transform: uppercase;
+  outline: none;
+  background: #F4A43E;
+  color: white;
+  font-size: 20px;
+  letter-spacing: 2px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid #DB9337;
+
+  &:active {
+    background: #DB9337;
+    color: color(#F4A43E blackness(14%));
+  }
+}

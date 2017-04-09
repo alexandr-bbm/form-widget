@@ -1,24 +1,25 @@
-import { render, h } from 'preact';
+import { render } from 'react-dom';
+import React from 'react';
 
 import FormWidget from 'FormWidget';
 
 module.exports = {
 	FormWidget: {
 		create (config = {}) {
-			if (!config.containerId) {
-				console.log(new Error(`CompanyName.FormWidget: Parameter containerId is \
-				 required. You passed: ${config.containerId}.`));
+			if (!config.containerId || !config.affiliateId) {
+				console.error(new Error(`CompanyName.FormWidget: Parameters "containerId" and "affiliateId" are \
+required. You passed: ${JSON.stringify(config)}.`));
 			}
 
-			const conatinerNode = document.getElementById(config.containerId);
+			const containerNode = document.getElementById(config.containerId);
 
-			if (!conatinerNode) {
-				console.log(new Error(`CompanyName.FormWidget: Can\'t find element with id ${config.containerId}. \
-					Please, check parameter: containerId`));
+			if (!containerNode) {
+				console.error(new Error(`CompanyName.FormWidget: Can\'t find element with id="${config.containerId}". \
+Please, check parameter: containerId`));
 			}
 			render(
 				<FormWidget {...{config}} />,
-				conatinerNode,
+				containerNode,
 			);
 		}
 	}

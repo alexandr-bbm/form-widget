@@ -5,12 +5,30 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
+<style>
+    body {
+        font-family: sans-serif;
+    }
+    .formWidget {
+        margin-bottom: 50px;
+    }
+</style>
 <body>
 <h1>Страница, на которую будет подключаться виджет</h1>
-<div id='partnerFormContainer1' style="max-width: 1024px; margin-bottom: 50px"></div>
-<div id='partnerFormContainer2' style="max-width: 768px; margin-bottom: 50px"></div>
-<div id='partnerFormContainer3' style="max-width: 440px; margin-bottom: 50px"></div>
-<div id='partnerFormContainer4' style="max-width: 286px"></div>
+<h2>Виджет адаптивен к ширине родителя</h2>
+<div class="formWidget" id='partnerFormContainer1'></div>
+
+<h3>Container: style="max-width: 768px"</h3>
+<div class="formWidget" id='partnerFormContainer2' style="max-width: 768px"></div>
+
+<h3>Container: style="max-width: 440px"</h3>
+<div class="formWidget" id='partnerFormContainer3' style="max-width: 440px"></div>
+
+<h3>Container: style="max-width: 286px"</h3>
+<div class="formWidget" id='partnerFormContainer4' style="max-width: 286px"></div>
+
+<h2>Возможность кастомизации цветов кнопки, фона и текста.</h2>
+<div id='partnerFormContainer5'></div>
 <script src="./dist/bundle.js"></script>
 <script>
     for (var i = 1; i <= 4; i++) {
@@ -18,13 +36,21 @@
           affiliateId: 'q1',
           containerId: 'partnerFormContainer' + i,
           customColors: {
-            background: i % 2 ?'#4990E2' : '#F4A43E',
-            button: i % 2 ? '#F4A43E'  :'#4990E2',
-//            text: '#000',
+            background: '#4990E2',
+            button: '#F4A43E',
           }
         });
-
     }
+
+    CompanyName.FormWidget.create({
+        affiliateId: 'q1',
+        containerId: 'partnerFormContainer5',
+        customColors: {
+            background: '#F4A43E',
+            button: '#4990E2',
+            text: '#000',
+        }
+    });
 </script>
 </body>
 </html>
