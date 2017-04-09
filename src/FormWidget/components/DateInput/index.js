@@ -34,8 +34,8 @@ export class DateInput extends Component {
 					dateFormat="DD.MM.YYYY"
 					placeholderText={placeholder}
 					className={classNames(s['input'], inputClassName)}
-					minDate={minDate}
-					name={name}
+					{...{minDate, name}}
+					readOnly
 				/>
 				<Icon
 					name="calendar"
