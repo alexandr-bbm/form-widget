@@ -7,18 +7,24 @@
 </head>
 <body>
 <h1>Страница, на которую будет подключаться виджет</h1>
-<div id='partnerFormContainer'></div>
+<div id='partnerFormContainer1' style="max-width: 1024px; margin-bottom: 50px"></div>
+<div id='partnerFormContainer2' style="max-width: 768px; margin-bottom: 50px"></div>
+<div id='partnerFormContainer3' style="max-width: 440px; margin-bottom: 50px"></div>
+<div id='partnerFormContainer4' style="max-width: 286px"></div>
 <script src="./dist/bundle.js"></script>
 <script>
-	CompanyName.FormWidget.create({
-      affiliateId: 'q1',
-      containerId: 'partnerFormContainer',
-//      customColors: {
-//        background: '#F4A43E',
-//        button: '#4990E2',
-//        text: '#000',
-//      }
-	});
+    for (var i = 1; i <= 4; i++) {
+        CompanyName.FormWidget.create({
+          affiliateId: 'q1',
+          containerId: 'partnerFormContainer' + i,
+          customColors: {
+            background: i % 2 ?'#4990E2' : '#F4A43E',
+            button: i % 2 ? '#F4A43E'  :'#4990E2',
+//            text: '#000',
+          }
+        });
+
+    }
 </script>
 </body>
 </html>

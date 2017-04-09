@@ -8,7 +8,7 @@ import s from './index.css';
 export class DatePicker extends Component {
 
 	render (props) {
-		const colors = this.context;
+		const { colors } = this.context;
 		return (
 			<div className={classNames(s['container'], props.containerClassName)}>
 				<input
