@@ -5,15 +5,27 @@
 4. Сборка: запустить команду `npm run build`
 
 ### Пример вставки виджета на сайт
+Внутри тега `head` вставьте код
+```javascript
+<script src="https://alexandr-bbm.github.io/form-widget/dist/bundle.js"></script>
+```
+
 Перед закрывающим тегом `<body>` вставить код
 ```javascript
-<script src="./dist/bundle.js"></script>
 <script>
    CompanyName.FormWidget.create({
-      /* Required */
       affiliateId: 'YOUR_ID',
       containerId: 'FORM_CONTAINER_ID',
-      /* Optional  */
+    });
+</script>
+```
+
+Если вы хотите поменять цвета фона, кнопки или текста, задайте конфигурацию следующим образом
+```javascript
+<script>
+   CompanyName.FormWidget.create({
+      affiliateId: 'YOUR_ID',
+      containerId: 'FORM_CONTAINER_ID',
       customColors: {
         background: '#4990E2',
         button: '#F4A43E',
