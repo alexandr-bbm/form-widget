@@ -5,12 +5,12 @@
 4. Сборка: запустить команду `npm run build`
 
 ### Пример вставки виджета на сайт
-Внутри тега `head` вставьте код
+Внутри закрывающим тегом `head` вставьте
 ```javascript
 <script src="https://alexandr-bbm.github.io/form-widget/dist/bundle.js"></script>
 ```
 
-Перед закрывающим тегом `<body>` вставить код
+Перед закрывающим тегом `<body>` вставьте
 ```javascript
 <script>
    CompanyName.FormWidget.create({
