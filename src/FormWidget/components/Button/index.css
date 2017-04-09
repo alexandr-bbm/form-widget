@@ -8,10 +8,9 @@
   color: white;
   font-size: 20px;
   letter-spacing: 2px;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: 2px solid #DB9337;
+  border-style: solid;
+  border-color:#DB9337;
+  border-width:0 0 2px 0;
 
   &:active {
     background: #DB9337;
