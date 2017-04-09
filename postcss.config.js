@@ -4,7 +4,7 @@ module.exports = {
 			path: ['src/']
 		},
 		'postcss-cssnext': {
-			browsers: ['last 2 versions', 'ie >= 9', 'Opera 12'],
+			browsers: ['last 2 versions', 'ie >= 9', 'Opera 15'],
 		},
 		'postcss-autoreset': {
 			reset: {
