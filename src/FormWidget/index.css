@@ -2,8 +2,6 @@
   --sidePadding: 20;
   --widthDesktop: calc(1024 - var(--sidePadding)*2);
   --widthLaptop: calc(768 - var(--sidePadding)*2);
-
-  --tablet: 768px;
 }
 
 .block {
