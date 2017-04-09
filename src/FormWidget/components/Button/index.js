@@ -35,7 +35,7 @@ export class Button extends Component {
 		return {
 			background,
 			color: colors.text,
-			borderBottom: `2px solid ${this.darkenButtonColor}`,
+			borderColor: this.darkenButtonColor,
 		}
 	};
 
