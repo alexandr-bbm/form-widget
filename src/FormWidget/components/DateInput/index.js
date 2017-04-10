@@ -1,14 +1,12 @@
 import { Component, h } from 'preact';
 import classNames from 'classNames';
-
-import { Icon } from '../Icon';
-
 import Pikaday from 'pikaday';
 import '!style-loader!css-loader!pikaday/css/pikaday.css';
 
-import s from './index.css';
-
 import { formatDate } from 'utils/formatDate';
+import { Icon } from '../Icon';
+
+import s from './index.css';
 
 export class DateInput extends Component {
 

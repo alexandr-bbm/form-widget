@@ -16,17 +16,7 @@ let config = {
 		libraryTarget: 'umd',
 		publicPath: '/dist/',
 	},
-	plugins: isProduction
-		? [
-				new webpack.optimize.OccurrenceOrderPlugin(),
-				new webpack.optimize.UglifyJsPlugin(),
-				new webpack.DefinePlugin({
-					'process.env': {
-						NODE_ENV: JSON.stringify('production')
-					}
-				}),
-			]
-		: [new webpack.HotModuleReplacementPlugin()],
+	plugins: [new webpack.IgnorePlugin(/moment/)],
 	module: {
 		rules: [
 			{
@@ -67,9 +57,16 @@ let config = {
 	devtool: isDevelopment ? 'cheap-module-eval-source-map': undefined,
 };
 
-if (isDevelopment) {
-	config.entry.unshift('webpack-hot-middleware/client');
-	config.module.rules[0].use.unshift('react-hot-loader');
+if (isProduction) {
+	config.plugins = config.plugins.concat([
+		new webpack.optimize.OccurrenceOrderPlugin(),
+		new webpack.optimize.UglifyJsPlugin(),
+		new webpack.DefinePlugin({
+			'process.env': {
+				NODE_ENV: JSON.stringify('production')
+			}
+		}),
+	]);
 }
 
 module.exports = config;
