@@ -60,7 +60,23 @@ let config = {
 if (isProduction) {
 	config.plugins = config.plugins.concat([
 		new webpack.optimize.OccurrenceOrderPlugin(),
-		new webpack.optimize.UglifyJsPlugin(),
+		new webpack.optimize.UglifyJsPlugin({
+			output: {
+				comments: false
+			},
+			compress: {
+				warnings: false,
+				conditionals: true,
+				unused: true,
+				comparisons: true,
+				sequences: true,
+				dead_code: true,
+				evaluate: true,
+				if_return: true,
+				join_vars: true,
+				negate_iife: false
+			}
+		}),
 		new webpack.DefinePlugin({
 			'process.env': {
 				NODE_ENV: JSON.stringify('production')

@@ -1,10 +1,7 @@
 module.exports = {
 	plugins: {
-		'postcss-import': {
-			path: ['src/']
-		},
 		'postcss-cssnext': {
-			browsers: ['last 2 versions', 'ie >= 9', 'Opera 15'],
+			browsers: ['last 2 versions', 'ie >= 10', 'Opera 15'],
 		},
 		'postcss-autoreset': {
 			reset: {
