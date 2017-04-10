@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component, h } from 'preact';
 
 export class Icon extends Component {
 	render() {

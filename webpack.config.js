@@ -1,29 +1,37 @@
 const path = require('path');
+const fs = require('fs');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-module.exports = {
-  devtool: 'cheap-module-eval-source-map',
-  entry: [
-    'webpack-hot-middleware/client',
-    './src/index'
-  ],
-  output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: '/dist/',
+const isProduction = process.env.NODE_ENV === 'production';
+const isDevelopment = !isProduction;
+
+let config = {
+	entry: [
+		'./src/index',
+	],
+	output: {
+		path: path.join(__dirname, 'dist'),
+		filename: 'bundle.js',
 		library: ['CompanyName'],
 		libraryTarget: 'umd',
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-		new ExtractTextPlugin('[name].bundle.css'),
-	],
-  module: {
+		publicPath: '/dist/',
+	},
+	plugins: isProduction
+		? [
+				new webpack.optimize.OccurrenceOrderPlugin(),
+				new webpack.optimize.UglifyJsPlugin(),
+				new webpack.DefinePlugin({
+					'process.env': {
+						NODE_ENV: JSON.stringify('production')
+					}
+				}),
+			]
+		: [new webpack.HotModuleReplacementPlugin()],
+	module: {
 		rules: [
 			{
 				test: /\.js$/,
-				use: ['react-hot-loader', 'babel-loader'],
+				use: ['babel-loader'],
 				include: path.join(__dirname, 'src')
 			},
 			{
@@ -35,8 +43,9 @@ module.exports = {
 						options: {
 							importLoaders: 1,
 							modules: true,
-							sourceMap: true,
-							localIdentName: '[local]--[hash:base64:5]',
+							minimize: isProduction,
+							sourceMap: isDevelopment,
+							localIdentName: isDevelopment ? '[local]--[hash:base64:5]' : undefined,
 						}
 					},
 					'postcss-loader'
@@ -45,13 +54,22 @@ module.exports = {
 			{
 				test: /\.svg$/,
 				use: ['raw-loader']
-			},
-		]
-  },
+			}
+		],
+		noParse: [/moment.js/,]
+	},
 	resolve: {
-  	modules: [
+		modules: [
 			path.join(__dirname, 'src'),
 			'node_modules',
 		],
 	},
+	devtool: isDevelopment ? 'cheap-module-eval-source-map': undefined,
 };
+
+if (isDevelopment) {
+	config.entry.unshift('webpack-hot-middleware/client');
+	config.module.rules[0].use.unshift('react-hot-loader');
+}
+
+module.exports = config;

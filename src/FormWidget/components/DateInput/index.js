@@ -1,41 +1,53 @@
-import React, { Component } from 'react';
+import { Component, h } from 'preact';
 import classNames from 'classNames';
 
 import { Icon } from '../Icon';
 
+import Pikaday from 'pikaday';
+import '!style-loader!css-loader!pikaday/css/pikaday.css';
+
 import s from './index.css';
 
-import DatePicker from 'react-datepicker';
-require('react-datepicker/dist/react-datepicker-cssmodules.css');
+import { formatDate } from 'utils/formatDate';
 
 export class DateInput extends Component {
 
 	state = {
-		startDate: '',
+		value: '',
 	};
 
-	handleChange = (date) => {
-		this.setState({
-			startDate: date
+	componentDidMount() {
+		this.picker = new Pikaday({
+			field: this.input,
+			onSelect: this.handleChange,
 		});
+	}
+
+	componentWillUnmount() {
+		this.picker.destroy();
+	}
+
+	handleChange = jsDate => {
+		const formattedDate = formatDate(jsDate);
 		const { onChange } = this.props;
+
+		this.setState({ value: formattedDate });
 		if (typeof onChange === 'function') {
-			onChange(date);
+			onChange(formattedDate);
 		}
 	};
 
 	render () {
-		const { iconColor, containerClassName, inputClassName, placeholder, minDate, name } = this.props;
+		const { iconColor, containerClassName, inputClassName, placeholder, name } = this.props;
 		return (
 			<div className={classNames(s['container'], containerClassName)}>
-				<DatePicker
-					selected={this.state.startDate}
-					onChange={this.handleChange}
-					dateFormat="DD.MM.YYYY"
-					placeholderText={placeholder}
+				<input
 					className={classNames(s['input'], inputClassName)}
-					{...{minDate, name}}
+					ref={c => this.input = c}
+					value={this.state.value}
+					type="text"
 					readOnly
+					{...{placeholder, name}}
 				/>
 				<Icon
 					name="calendar"

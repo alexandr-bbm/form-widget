@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import { Component, h } from 'preact';
 import classNames from 'classNames';
 require('cq-prolyfill')({ postcss: true });
 
@@ -14,10 +14,6 @@ const defaultColors = {
 };
 
 export default class FormWidget extends Component {
-
-	state = {
-		departureDate: '',
-	};
 
 	constructor(props) {
 		super(props);
@@ -52,7 +48,6 @@ export default class FormWidget extends Component {
 						<DateInput
 							placeholder="Depart date"
 							iconColor={colors.background}
-							onChange={this.handleDepartureDateChange}
 							name="departDate"
 						/>
 					</div>
@@ -60,7 +55,6 @@ export default class FormWidget extends Component {
 						<DateInput
 							placeholder="Return date"
 							iconColor={colors.background}
-							minDate={this.state.minReturnDate}
 							name="returnDate"
 						/>
 					</div>
@@ -71,8 +65,6 @@ export default class FormWidget extends Component {
 			</form>
 		)
 	}
-
-	handleDepartureDateChange = date => this.setState({ minReturnDate: date });
 
 	handleFormSubmit = (e) => {
 		e.preventDefault();

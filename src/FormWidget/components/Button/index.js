@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component, h } from 'preact';
 import { shadeColor } from 'utils/shadeColor';
 
 import s from './index.css';

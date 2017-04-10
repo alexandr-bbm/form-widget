@@ -31,26 +31,28 @@
 <h2>Возможность кастомизации цветов кнопки, фона и текста.</h2>
 <div id='partnerFormContainer5'></div>
 <script>
-    for (var i = 1; i <= 4; i++) {
+	if (window.CompanyName) {
+        for (var i = 1; i <= 4; i++) {
+            CompanyName.FormWidget.create({
+              affiliateId: 'q1',
+              containerId: 'partnerFormContainer' + i,
+              customColors: {
+                background: '#4990E2',
+                button: '#F4A43E',
+              }
+            });
+        }
+
         CompanyName.FormWidget.create({
-          affiliateId: 'q1',
-          containerId: 'partnerFormContainer' + i,
-          customColors: {
-            background: '#4990E2',
-            button: '#F4A43E',
-          }
+            affiliateId: 'q1',
+            containerId: 'partnerFormContainer5',
+            customColors: {
+                background: '#F4A43E',
+                button: '#4990E2',
+                text: '#000',
+            }
         });
     }
-
-    CompanyName.FormWidget.create({
-        affiliateId: 'q1',
-        containerId: 'partnerFormContainer5',
-        customColors: {
-            background: '#F4A43E',
-            button: '#4990E2',
-            text: '#000',
-        }
-    });
 </script>
 </body>
 </html>
